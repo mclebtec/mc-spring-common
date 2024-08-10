@@ -1,5 +1,6 @@
-package com.mclebtec.document.processor;
+package com.mclebtec.document.processor.it;
 
+import com.mclebtec.document.processor.DocumentProcessorConfig;
 import com.mclebtec.document.processor.model.Customer;
 import com.mclebtec.document.processor.model.QuoteItem;
 import com.mclebtec.document.processor.service.DocumentService;
