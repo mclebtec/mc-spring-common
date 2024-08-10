@@ -1,0 +1,9 @@
+document:
+  fileType: 'pdf'
+  output: 'env/local/'
+
+logging:
+  level:
+    org.springframework: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
