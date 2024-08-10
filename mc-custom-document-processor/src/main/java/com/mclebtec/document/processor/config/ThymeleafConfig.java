@@ -12,11 +12,13 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 @Configuration
 public class ThymeleafConfig {
 
+  public final static String PATH = "templates";
+
   @Bean
   @Description("Thymeleaf template resolver serving HTML")
   public ClassLoaderTemplateResolver htmlTemplateLoader() {
     ClassLoaderTemplateResolver htmlTemplateLoader = new ClassLoaderTemplateResolver();
-    htmlTemplateLoader.setPrefix("/");
+    htmlTemplateLoader.setPrefix("/%s/".formatted(PATH));
     htmlTemplateLoader.setSuffix(".html");
     htmlTemplateLoader.setTemplateMode(HTML);
     htmlTemplateLoader.setCharacterEncoding(UTF_8.name());
