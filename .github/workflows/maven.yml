@@ -15,6 +15,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4.1.7
 
+      - name: Check branch name
+        id: branch-name
+        run: |
+          BRANCH_NAME=${{ github.ref_name }}
+          echo "Branch name: $BRANCH_NAME"
+          
+          if [[ ! "$BRANCH_NAME" =~ ^feature\/[a-z0-9_-]+ ]]; then
+            echo "Error: Branch name does not follow the required pattern 'feature/****'."
+            exit 1
+          fi
+
+      - name: Success
+        run: echo "Branch name is valid."
+
       - name: Setup java
         uses: actions/setup-java@v4
         with:
