@@ -21,7 +21,7 @@ jobs:
           BRANCH_NAME=${{ github.ref_name }}
           echo "Branch name: $BRANCH_NAME"
           
-          if [[ ! "$BRANCH_NAME" =~ ^feature\:[a-z0-9_-]+ ]]; then
+          if [[ ! "$BRANCH_NAME" =~ ^feature\/[a-z0-9_-]+ ]]; then
             echo "Error: Branch name does not follow the required pattern 'feature/****'."
             exit 1
           fi
