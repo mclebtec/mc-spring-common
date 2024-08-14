@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.mclebtec.client.connector.ClientConnectorConfig;
 import com.mclebtec.client.connector.service.ClientConnectorService;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import org.junit.jupiter.api.Test;
@@ -19,7 +20,7 @@ import org.springframework.test.context.ContextConfiguration;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @Import(ClientConnectorConfig.class)
 @ContextConfiguration(classes = {ClientConnectorIT.class})
-public class ClientConnectorIT {
+class ClientConnectorIT {
 
   @LocalServerPort
   private int port;
@@ -49,6 +50,27 @@ public class ClientConnectorIT {
         () -> assertEquals("success", response.get("status")),
         () -> assertEquals("Successfully! All records has been fetched.", response
             .get("message"))
+    );
+  }
+
+  @Test
+  void post_DataWithoutToken_Success() {
+
+    //WHEN
+    final Map<String, Object> response = clientTemplateConnectorService.post(
+        "https://dummy.restapiexample.com/api/v1/create", new HashMap<String, String>() {
+          {
+            put("name", "test");
+            put("salary", "123");
+            put("age", "23");
+          }
+        });
+
+    //THEN
+    assertAll(
+        () -> assertNotNull(response),
+        () -> assertEquals("success", response.get("status")),
+        () -> assertEquals("Successfully! Record has been added.", response.get("message"))
     );
   }
 
