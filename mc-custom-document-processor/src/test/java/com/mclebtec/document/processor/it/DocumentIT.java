@@ -16,7 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 
 @SpringBootTest
 @Import(DocumentProcessorConfig.class)
-@ContextConfiguration(classes = {DocumentProcessorConfig.class})
+@ContextConfiguration(classes = {DocumentIT.class})
 class DocumentIT {
 
   @Autowired
